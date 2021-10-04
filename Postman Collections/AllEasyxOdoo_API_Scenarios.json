@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "3eacce43-0635-4f36-87f5-43d070406d4e",
+    "name": "AllEasyxOdoo API Scenarios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authenticate User",
+      "_postman_id": "a273b8b5-3a5c-4866-a6ac-bd7a0cc3ed44",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {},
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\": {\n        \"db\": {{database}},\n        \"login\": {{username}},\n        \"password\":{{password}}\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "https://{{base_url}}/auth/"
+      },
+      "response": []
+    },
+    {
+      "name": "GET Latest Bill",
+      "_postman_id": "7eced875-653c-404d-b4da-5a4775d0ce37",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "07070001621231\r\n",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": {
+          "raw": "https://{{base_url}}/api/account.move/?session_id=40195cbc5d8a58639050055dc7eb6ed1fe4a7303&filter=[[\"atm_ref\",\"=\",\"07070002431231\"],[\"name\",\"=\",\"INV/2021/0101\"]]&query={name, amount_total, amount_residual, total_balance}",
+          "protocol": "https",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "account.move",
+            ""
+          ],
+          "query": [
+            {
+              "key": "session_id",
+              "value": "40195cbc5d8a58639050055dc7eb6ed1fe4a7303"
+            },
+            {
+              "key": "filter",
+              "value": "[[\"atm_ref\",\"=\",\"07070002431231\"],[\"name\",\"=\",\"INV/2021/0101\"]]"
+            },
+            {
+              "key": "query",
+              "value": "{name, amount_total, amount_residual, total_balance}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Payments",
+      "_postman_id": "147f4c70-a3f1-40e7-b5ba-4c69237b8afe",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "07070001621231\r\n",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": {
+          "raw": "https://{{base_url}}/api/account.payment/?session_id=40195cbc5d8a58639050055dc7eb6ed1fe4a7303&filter=[[\"name\", \"=\", \"CUST.IN/2021/368796\"]]&query={id, name, partner_id, payment_type, x_studio_customer_id, amount}",
+          "protocol": "https",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "account.payment",
+            ""
+          ],
+          "query": [
+            {
+              "key": "session_id",
+              "value": "40195cbc5d8a58639050055dc7eb6ed1fe4a7303"
+            },
+            {
+              "key": "filter",
+              "value": "[[\"name\", \"=\", \"CUST.IN/2021/368796\"]]"
+            },
+            {
+              "key": "query",
+              "value": "{id, name, partner_id, payment_type, x_studio_customer_id, amount}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Payment",
+      "_postman_id": "917f3f37-275c-451d-93dd-a8ba936bcf84",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"params\": {\r\n        \"data\": {\r\n            \"name\": \"CUST.IN/2021/0102\",\r\n            \"payment_type\": \"inbound\",\r\n            \"partner_type\": \"customer\",\r\n            \"partner_id\": 509083,\r\n            \"company_id\": 1,\r\n            \"amount\": 50.0,\r\n            \"journal_id\": 23,\r\n            \"communication\": \"INV/2021/0102\",\r\n            \"payment_date\": \"2021-10-04\",\r\n            \"payment_method_id\": 1,\r\n            \"state\": \"draft\",\r\n            \"x_studio_customer_id\": \"210521-1499\",\r\n            \"x_studio_payment_channel\": \"DIRECT DEPOSIT TO PCI ACCOUNT\",\r\n            \"bill_id\": 2546072,\r\n            \"x_studio_invoicecustomer_id\": \"210521-1499\"\r\n        }\r\n    }\r\n}\r\n",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": {
+          "raw": "https://{{base_url}}/api/account.payment/?session_id=185affdedeaac00c8c1b07045f1038f77e16d19b",
+          "protocol": "https",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "account.payment",
+            ""
+          ],
+          "query": [
+            {
+              "key": "session_id",
+              "value": "185affdedeaac00c8c1b07045f1038f77e16d19b"
+            },
+            {
+              "key": "filter",
+              "value": "[[\"atm_ref\",\"=\",\"07070002431231\"],[\"name\",\"=\",\"INV/2021/0101\"]]",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Credit Notes (Reversal)",
+      "_postman_id": "6d9170e3-05ba-4a0f-bdde-1a83a8f97d93",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"params\": {\r\n        \"data\": {\r\n            \"type\": \"out_refund\",\r\n            \"partner_id\": 512228,\r\n            \"partner_shipping_id\": 512228,\r\n            \"ref\": \"REF#123\",\r\n            \"invoice_date\": \"2021-10-04\",\r\n            \"invoice_line_ids\": [\r\n                {\r\n                    \"product_id\": 6929,\r\n                    \"price_unit\": 600\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+          "options": {
+            "raw": {}
+          }
+        },
+        "url": {
+          "raw": "https://{{base_url}}/api/account.move/?session_id=185affdedeaac00c8c1b07045f1038f77e16d19b",
+          "protocol": "https",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "account.move",
+            ""
+          ],
+          "query": [
+            {
+              "key": "session_id",
+              "value": "185affdedeaac00c8c1b07045f1038f77e16d19b"
+            },
+            {
+              "key": "filter",
+              "value": "[[\"atm_ref\",\"=\",\"07070002431231\"],[\"name\",\"=\",\"INV/2021/0101\"], [\"type\",\"=\",\"in_refund\"]]",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
